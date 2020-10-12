@@ -1,35 +1,43 @@
 <template>
   <div id="app">
-    {{todos}}
+    <Header />
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
   </div>
 </template>
 
 <script>
-
+import Header from './components/Layouts/header';
+import Todos from './components/todos';
 export default {
   name: 'App',
   components: {
-    
+    Todos, 
+    Header
   },
   data(){
     return{
       todos: [
         {
           id: 1,
-          title: "Brush teeth",
+          title: "Task 1",
           completed: false
         },
         {
-          id: 1,
-          title: "Brush teeth",
+          id: 2,
+          title: "Task 2",
           completed: false
         },
         {
-          id: 1,
-          title: "Brush teeth",
+          id: 3,
+          title: "Task 3",
           completed: false
         }
       ]
+    }
+  },
+  methods:{
+    deleteTodo(id){
+      this.todos = this.todos.filter(todo=> todo.id !== id);
     }
   }
 }
